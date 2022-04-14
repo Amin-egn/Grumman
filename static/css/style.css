@@ -1,0 +1,5 @@
+.background-color {
+    background: #8360c3;
+    background: -webkit-linear-gradient(to top, #8360c3, #2ebf91);
+    background: linear-gradient(to top, #8360c3, #2ebf91);
+}

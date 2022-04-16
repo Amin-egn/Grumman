@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+{% block content %}
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 col-md-8 px-4 py-5">
+                <div class="card bg-class">
+                    <div class="card-body">
+                        <h3>Register</h3>
+                    </div>
+                    <div class="tab-content p-4">
+                        <!-- register -->
+                            <form method="post" action="" novalidate>
+                                {% csrf_token %}
+                                {% include 'raw_form_include.html' %}
+
+
+
+                                <!-- Checkbox -->
+                                <div class="form-check d-flex justify-content-center mb-4">
+                                  <input class="form-check-input me-2" type="checkbox" value="" id="registerCheck" checked
+                                    aria-describedby="registerCheckHelpText" />
+                                  <label class="form-check-label" for="registerCheck">
+                                    I have read and agree to the terms
+                                  </label>
+                                </div>
+
+                                <!-- Submit button -->
+                                <button type="submit" class="btn btn-primary btn-block mb-3">Register</button>
+                                <a href="{% url 'login' %}">Already have an account?</a>
+                            </form>
+                        <!-- end register -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

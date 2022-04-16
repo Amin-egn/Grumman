@@ -12,8 +12,12 @@
     {% endblock %}
 </head>
 <body>
-    {% block content %}
-    {% endblock %}
+
+    <section class="background-color vh-100 overflow-hidden">
+
+        {% block content %}
+        {% endblock %}
+    </section>
 
     <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
     <script src="{% static 'js/bootstrap.min.js' %}"></script>

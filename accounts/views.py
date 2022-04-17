@@ -22,8 +22,7 @@ class RegisterView(BaseView):
     def post(self, request):
         form = RegisterForm(request.POST)
         if form.is_valid():
-            user = form.save()
-
+            form.save()
             messages.success(request, 'Account created successfully')
             return redirect('login')
         return self.render(request, form=form)

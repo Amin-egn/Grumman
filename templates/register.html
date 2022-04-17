@@ -13,18 +13,14 @@
                             <form method="post" action="" novalidate>
                                 {% csrf_token %}
                                 {% include 'raw_form_include.html' %}
-
-
-
                                 <!-- Checkbox -->
                                 <div class="form-check d-flex justify-content-center mb-4">
                                   <input class="form-check-input me-2" type="checkbox" value="" id="registerCheck" checked
-                                    aria-describedby="registerCheckHelpText" />
+                                    aria-describedby="registerCheckHelpText">
                                   <label class="form-check-label" for="registerCheck">
                                     I have read and agree to the terms
                                   </label>
                                 </div>
-
                                 <!-- Submit button -->
                                 <button type="submit" class="btn btn-primary btn-block mb-3">Register</button>
                                 <a href="{% url 'login' %}">Already have an account?</a>

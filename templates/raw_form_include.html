@@ -1,7 +1,7 @@
 {% load widget_tweaks %}
 
 {% if form.non_field_errors %}
-<div class="alert " role="alert">
+<div class="alert alert-danger" role="alert">
     {% for err in form.non_field_errors %}
         <p {% if forloop.last %} class="mb-0" {% endif %}>{{ err }}</p>
     {% endfor %}

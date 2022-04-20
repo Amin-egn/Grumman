@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container mt-5 background-glassy">
+    <div class="row my-4">
+        <div class="col-md-8">
+            <div class="input-group">
+              <div class="form-outline mr-1">
+                <input type="search" class="form-control" placeholder="Search">
+              </div>
+              <button type="button" class="btn btn-primary">
+                Search
+              </button>
+            </div>
+
+        </div>
+        <div class="col-md-4 text-right">
+                <button class="btn btn-success" type="button" data-toggle="modal" data-target="#add_board_modal">
+                    Add Board
+                </button>
+        </div>
+    </div>
+    <div class="table-reponsive">
+        <table class="table">
+            <thead>
+                <th>Row</th>
+                <th>Title</th>
+                <th>Items</th>
+                <th>Action</th>
+            </thead>
+            <tbody>
+                {% for board in all_board %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>
+                        <a href="{% url 'tasks' board.id %}">{{ board.title }}</a>
+                    </td>
+                    <td>{{ board.items.count }}</td>
+                    <td>
+                        <button type="button" class="btn btn-primary">Edit</button>
+                        <form style="display: inline" method="post" action="{% url 'board_delete' board.pk %}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td>1</td>
+                    <td>No Todo-List yet</td>
+                    <td>No Items yet</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="modal fade" id="add_board_modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Add Board</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="" novalidate>
+                    {% csrf_token %}
+                    {% include 'raw_form_include.html' %}
+                    <input class="btn btn-success mt-3 float-right" type="submit" value="Create">
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

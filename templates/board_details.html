@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container mt-5 background-glassy">
+    <h3 class="text-center mt-3">{{ board.title|upper }}</h3>
+    <div class="row my-4">
+        <div class="col-md-8">
+            <div class="input-group">
+              <div class="form-outline mr-1">
+                <input type="search" class="form-control" placeholder="Search">
+              </div>
+              <button type="button" class="btn btn-primary">
+                Search
+              </button>
+            </div>
+
+        </div>
+        <div class="col-md-4 text-right">
+                <button class="btn btn-success" type="button" data-toggle="modal" data-target="#add_task_modal">
+                    Add Task
+                </button>
+        </div>
+    </div>
+    <div class="table-reponsive">
+        <table class="table">
+            <thead>
+                <th>Row</th>
+                <th>Title</th>
+                <th>Descrption</th>
+                <th>Created at</th>
+                <th>Dead line</th>
+                <th>Status</th>
+                <th>Created by</th>
+                <th>Handle by</th>
+                {% if items.owner == items.assign_to %}
+                    <th>Action</th>
+                {% endif %}
+            </thead>
+            <tbody>
+                {% for task in items %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ task.title }}</td>
+                    <td>{{ task.description }}</td>
+                    <td>{{ task.created_at }}</td>
+                    <td>{{ task.due_date }}</td>
+                    <td>{{ task.status }}</td>
+                    <td>{{ task.owner }}</td>
+                    <td>{{ task.assign_to }}</td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td>1</td>
+                    <td>No Task yet</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="modal fade" id="add_task_modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Add Task</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="" novalidate>
+                    {% csrf_token %}
+                    {% include 'raw_form_include.html' %}
+                    <input class="btn btn-success mt-3 float-right" type="submit" value="Create">
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}
